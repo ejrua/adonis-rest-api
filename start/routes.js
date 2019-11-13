@@ -19,8 +19,18 @@ const Route = use('Route')
 Route.group(()=>{
     Route.post('user/register','UserController.store');
     Route.post('user/login','UserController.login');
-    Route.get('proyecto','ProyectoController.index').middleware('auth'); //Esta protegidos
-    Route.post('proyecto','ProyectoController.create').middleware('auth'); //Esta protegidos
-    Route.delete('proyecto/:id','ProyectoController.destroy').middleware('auth'); //Esta protegidos
+    // Rutas de Proyecto
+    Route.get('proyectos','ProyectoController.index').middleware('auth'); //Esta protegidos
+    Route.post('proyectos','ProyectoController.create').middleware('auth'); //Esta protegidos
+    Route.delete('proyectos/:id','ProyectoController.destroy').middleware('auth'); //Esta protegidos
+    Route.patch('proyectos/:id','ProyectoController.update').middleware('auth'); //Esta protegidos
+
+    // Ruta de Tareas
+    Route.get('proyectos/:id/tareas','TareaController.index').middleware('auth'); //Esta protegidos
+    Route.post('proyectos/:id/tareas','TareaController.create').middleware('auth'); //Esta protegidos
+    Route.delete('tareas/:id','TareaController.destroy').middleware('auth'); //Esta protegidos
+    Route.patch('tareas/:id','TareaController.update').middleware('auth'); //Esta protegidos
+
+
 }).prefix('api/v1');
 
