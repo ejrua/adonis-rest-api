@@ -1,9 +1,18 @@
+const AccesoProhibidoException = use('App/Exceptions/AccesoProhibidoException');
+const RecurosNoEncontradoException =use('App/Exceptions/RecurosNoEncontradoException');
+
+
+
 class AutorizacionService{
     verificarPermiso(recurso, user){
-        if(recurso.user_id == user.id){
-            throw new Error();
+        if(!recurso){
+            throw new RecurosNoEncontradoException();
+        }
+        if(recurso.user_id !== user.id){
+            throw new AccesoProhibidoException();
         }
     }
 }
 
-module.exports = Proyec
+
+module.exports = new AutorizacionService();

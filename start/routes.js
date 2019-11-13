@@ -21,5 +21,6 @@ Route.group(()=>{
     Route.post('user/login','UserController.login');
     Route.get('proyecto','ProyectoController.index').middleware('auth'); //Esta protegidos
     Route.post('proyecto','ProyectoController.create').middleware('auth'); //Esta protegidos
+    Route.delete('proyecto/:id','ProyectoController.destroy').middleware('auth'); //Esta protegidos
 }).prefix('api/v1');
 

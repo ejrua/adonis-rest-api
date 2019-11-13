@@ -20,6 +20,15 @@ class ProyectoController {
         await user.proyectos().save(proyecto);
         return proyecto;
     }
+
+    async destroy({auth, params}){
+        const user = await auth.getUser();
+        const { id } =  params;
+        const proyecto = await Proyecto.find(id);
+        AutorizacionService.verificarPermiso(proyecto,user);
+        await proyecto.delete();
+        return proyecto;
+    }
 }
 
 module.exports = ProyectoController
